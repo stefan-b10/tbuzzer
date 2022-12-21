@@ -1,0 +1,104 @@
+{{!-- <h1>{{#each notifications}}</h1> --}}
+
+{{! Header }}
+
+<header id="header">
+	{{! <h1 class="text-center mb-3">Tbuzzer</h1> }}
+	<nav>
+		<div class="container">
+			<div class="text-center">
+				<a href="/" class="nav-brand text-dark">Tbuzzer</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
+{{! /Header }}
+
+{{! MAIN }}
+<main id="site-main">
+	<div class="container">		
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Exchange</th>
+						<th>Pair</th>
+						<th>Direction</th>
+						<th>Price</th>
+						<th>New Notification</th>
+					</tr>
+				</thead>
+				
+				<tr>
+					<form action="/" method="POST" id="add_notification">
+					<th>
+						<select id="exchange" name="exchange">
+							<option>Select Exchange</option>
+							{{#each markets}}
+								<option
+									value="{{this.exchange}} [{{this.markets}}]"
+								>{{this.exchange}}</option>
+							{{/each}}
+						</select>
+					</th>
+					<th>
+						<select id="pair" name="pair">
+							{{! <option>Select Pair</option> }}
+						</select>
+					</th>
+					<th>
+						<select id="direction">
+							<option>Select Direction</option>
+							<option value="UP">UP</option>
+							<option Value="DOWN">DOWN</option>
+						</select>
+					</th>
+					<th>
+						<input id ="price"
+							type="text"
+							name="price"							
+							placeholder="Enter price"
+						/>
+					</th>
+					<th>
+						<button type="submit" id="submit" class="btn text-dark update">Add Notification</button>
+					</th>
+				</form>
+					
+				</tr>
+
+				<thead class="thead-dark">
+					<tr>
+						<th align="center">Active Notifications</th>
+					</tr>
+				</thead>
+				
+				<tr  id="notifications" >
+					<form action="/" method="DELETE" id="delete_notification" >
+					{{#each notifications}}
+						<tr>
+							<td id="n-exchange">{{this.exchange}}</td>
+							<td id="n-symbol">{{this.symbol}}</td>
+							<td id="n-direction">{{this.direction}}</td>
+							<td id="n-price">{{this.price}}</td>
+							<td id="id" hidden value="{{this.id}}"></td>
+
+							<td id="load">
+								<button id="delete" name="delete" class="btn text-dark delete" value={{this.id}}>Delete
+									Notification</button>
+							</td>
+						</tr>
+					{{/each}}
+				</form>
+					
+				</table>
+			</tr>
+		
+
+	</div>
+</main>
+
+{{! /MAIN }}
+
+<script src="js/main.js"></script>
